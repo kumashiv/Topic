@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Topic, Entry
+
 # Create your views here.
 def index(request):
     """The HomePage for learning_log"""
@@ -7,7 +9,7 @@ def index(request):
 
 def topic(request, topic_id):
     """Show topic and all its entries"""
-    topic = Topics.objects.get(topic_id)
+    topic = Topic.objects.get(id=topic_id)
     entries = topic.entry_set.order_by('-date_added')
 
     context = {
